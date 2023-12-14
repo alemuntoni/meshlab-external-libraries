@@ -20,7 +20,13 @@ jobs:
         with:
           repository: cnr-isti-vclab/meshlab
           ref: MeshLab-${{ github.event.inputs.version }}
+          submodules: recursive
           path: meshlab
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          cache: true
+          version: '5.15.2'
       - name: Configure MeshLab
         run: |
           sudo apt-get install -y mesa-common-dev libglu1-mesa-dev
