@@ -21,7 +21,7 @@ jobs:
           repository: cnr-isti-vclab/meshlab
           ref: MeshLab-${{ github.event.inputs.version }}
           submodules: recursive
-          path: ../meshlab
+          path: meshlab
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -31,7 +31,7 @@ jobs:
         run: |
           sudo apt-get install -y mesa-common-dev libglu1-mesa-dev
           sudo apt-get install -y cmake ninja-build libgmp-dev libmpfr-dev libtbb-dev
-          cd ../meshlab
+          cd meshlab
           mkdir build
           cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..
@@ -41,7 +41,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git rm -r downloads
           mkdir -p downloads
-          cp -r ../meshlab/src/external/downloads/* ./downloads
+          cp -r meshlab/src/external/downloads/* ./downloads
       - name: Commit External Libraries
         run: |
           git add downloads/*
