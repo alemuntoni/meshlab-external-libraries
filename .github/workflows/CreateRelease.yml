@@ -1,0 +1,28 @@
+name: CreateRelease
+
+on:
+  #[push, pull_request] #just for test release scripts
+  workflow_dispatch: #manual run
+    inputs:
+      version:
+        description: 'MeshLab Version'
+        required: true
+        default: 'YYYY.MM'
+
+jobs:
+  CreateRelease:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Zip downloads content
+        run: |
+          zip -r MeshLabExternalLibraries${{ github.event.inputs.version }}.zip downloads
+      - name: Create Release
+        uses: "ncipollo/release-action@v1"
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          tag: v${{ github.event.inputs.version }}
+          name: 'MeshLab External Libraries ${{ github.event.inputs.version }}'
+          artifacts: |
+            MeshLabExternalLibraries*.zip

@@ -50,14 +50,5 @@ jobs:
         with:
           branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      #Create release
-      - name: Create Release
-        uses: "ncipollo/release-action@v1"
-        with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
-          tag: ${{ github.event.inputs.version }}
-          name: 'MeshLab External Libraries ${{ github.event.inputs.version }}'
-          artifacts: |
-            downloads/*
 
 
