@@ -1,0 +1,32 @@
+name: DownloadExternalLibraries
+
+on:
+  #[push, pull_request] #just for test release scripts
+  workflow_dispatch: #manual run
+    inputs:
+      version:
+        description: 'MeshLab Version'
+        required: true
+        default: 'YYYY.MM'
+
+jobs:
+  download_external_libraries:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download MeshLab repo
+        uses: actions/checkout@v2
+        with:
+          repository: https://github.com/cnr-isti-vclab/meshlab
+          ref: MeshLab-${{ github.event.inputs.version }}
+          path: meshlab
+      - name: Configure MeshLab
+        run: |
+          sudo apt-get install -y mesa-common-dev libglu1-mesa-dev
+          sudo apt-get install -y cmake ninja-build libgmp-dev libmpfr-dev libtbb-dev
+          cd meshlab
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          
