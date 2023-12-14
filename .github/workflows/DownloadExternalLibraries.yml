@@ -39,7 +39,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git rm -r downloads
           mkdir -p downloads
           cp -r meshlab/src/external/downloads/* ./downloads
       - name: Commit External Libraries
