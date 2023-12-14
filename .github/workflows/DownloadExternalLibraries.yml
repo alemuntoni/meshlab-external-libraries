@@ -18,7 +18,7 @@ jobs:
       - name: Download MeshLab repo
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/cnr-isti-vclab/meshlab
+          repository: cnr-isti-vclab/meshlab
           ref: MeshLab-${{ github.event.inputs.version }}
           path: meshlab
       - name: Configure MeshLab
@@ -29,4 +29,4 @@ jobs:
           mkdir build
           cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..
-          
+
