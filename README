@@ -1,0 +1,9 @@
+# MeshLab External Libraries
+
+This repo contains the external libraries used by MeshLab. 
+
+Usually, external libraries are automatically downloaded during the configuration phase of the build process, by CMake.
+
+When this is not possible (e.g. for offline builds), the content of this repository can be downloaded from this repository (using the tag associated to the MeshLab version) and placed in the `src/external` folder of the MeshLab source tree.
+
+The download must be done before the configuration phase (cmake) of the build process.
